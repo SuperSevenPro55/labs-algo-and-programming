@@ -16,6 +16,7 @@ public static void Menu() throws IOException{
                 2. Сортировки
                 3. Сортировки 2
                 4. Поиск минимумов
+                5. Хэщ-таблица
                 6. Бинарный поиск
                 7. Динамическое программирование (временно не работает)
                 8. Запросы на отрезках
@@ -120,6 +121,11 @@ public static void Menu() throws IOException{
                     }
                     default -> IO.println("Неверный ввод");
                 }
+            }
+
+            case 5 -> {
+                IO.println("--------Хэш-таблица--------");
+                Lab_5.start();
             }
 
             case 6 -> {
