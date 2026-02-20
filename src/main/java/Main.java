@@ -1,11 +1,11 @@
 import Labs.*;
 
-void main() throws IOException{
+void main() {
     Menu();
     IO.println("Завершение программы...");
 }
 
-public static void Menu() throws IOException{
+public static void Menu() {
     int choice = -1;
     Scanner sc = new Scanner(System.in);
 
@@ -23,9 +23,9 @@ public static void Menu() throws IOException{
                 9. Деревья поиска
                 0. Выход
                 """);
-
-        switch (InputRequest(sc)) {
-            case 1 -> {
+        Labs selected = InputRequestNew(sc);
+        switch (selected) {
+            case BASE -> {
                 IO.print("""
                         --------База--------
                         1. Проверка скобок
@@ -47,7 +47,7 @@ public static void Menu() throws IOException{
                 }
             }
 
-            case 2 -> {
+            case SORTINGS_1 -> {
                 IO.print("""
                         --------Сортировки--------
                         1. Сортировка вставками
@@ -74,7 +74,7 @@ public static void Menu() throws IOException{
                 }
             }
 
-            case 3 -> {
+            case SORTINGS_2 -> {
                 IO.print("""
                         --------Сортировки 2--------
                         1. Сортировка подсчетом
@@ -101,7 +101,7 @@ public static void Menu() throws IOException{
                 }
             }
 
-            case 4 -> {
+            case MINS -> {
                 IO.print("""
                         --------Поиск минимумов--------
                         1. Стек минимумов
@@ -123,12 +123,12 @@ public static void Menu() throws IOException{
                 }
             }
 
-            case 5 -> {
+            case HASH_MAP -> {
                 IO.println("--------Хэш-таблица--------");
                 Lab_5.start();
             }
 
-            case 6 -> {
+            case DYNAMIC_PROGRAMMING -> {
                 IO.print("""
                         --------Бинарный поиск--------
                         1. Приближенный поиск
@@ -182,7 +182,7 @@ public static void Menu() throws IOException{
 //                }
 //            }
 
-            case 8 -> {
+            case REQUESTS -> {
                 IO.print("""
                         --------Запросы на отрезках--------
                         1. Префиксные суммы
@@ -192,7 +192,11 @@ public static void Menu() throws IOException{
                 switch (InputRequest(sc)) {
                     case 1 -> {
                         IO.println("--------Префиксные суммы--------");
-                        Lab_8_1.start();
+                        try {
+                            Lab_8_1.start();
+                        } catch (Exception e) {
+                            printPrettyException(selected, 1, e);
+                        }
                     }
                     case 2 -> {
                         IO.println("--------Дерево отрезков для минимумов--------");
@@ -204,7 +208,7 @@ public static void Menu() throws IOException{
                 }
             }
 
-            case 9 -> {
+            case TREES -> {
                 IO.print("""
                         --------Деревья поиска--------
                         1. Двоичное дерево поиска
@@ -226,7 +230,7 @@ public static void Menu() throws IOException{
                 }
             }
 
-            case 0 -> choice = 0;
+            case UNKNOWN -> choice = 0;
             default -> IO.println("Неверный ввод");
         }
     } while (choice != 0);
@@ -235,4 +239,14 @@ public static void Menu() throws IOException{
 public static int InputRequest(Scanner sc) {
     IO.print("Выберите пункт: ");
     return sc.nextInt();
+}
+
+public static Labs InputRequestNew(Scanner sc) {
+    IO.print("Выберите пункт: ");
+    return Labs.getById(sc.nextInt());
+}
+
+private static void printPrettyException(Labs lab, int sublab, Exception e) {
+    System.err.println("\nException in lab's " + lab.getId() + " sublab #" + sublab);
+    System.err.println(e.getMessage());
 }

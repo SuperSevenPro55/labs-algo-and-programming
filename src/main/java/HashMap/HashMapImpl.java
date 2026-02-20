@@ -25,8 +25,8 @@ public class HashMapImpl<K, V> implements HashMap<String, V>{
         }
     }
 
-    private long hashByString(String value) {
-        long hash = 0;
+    private int hashByString(String value) {
+        int hash = 0;
         for (Character ch : value.toCharArray()) {
             hash = (hash * A + ch) % TABLE_SIZE;
         }
@@ -35,8 +35,12 @@ public class HashMapImpl<K, V> implements HashMap<String, V>{
 
     @Override
     public void put(String key, V value) {
-        long index = hashByString(key);
-
+        int index = hashByString(key);
+        LinkedList<Node<K, V>> chamber = table.get(index);
+        if (chamber == null) {
+            chamber = new LinkedList<>();
+            table.set(index, chamber);
+        }
     }
 
     @Override
