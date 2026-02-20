@@ -1,11 +1,11 @@
 import Labs.*;
 
-void main() {
+void main() throws IOException{
     Menu();
     IO.println("Завершение программы...");
 }
 
-public static void Menu() {
+public static void Menu() throws IOException{
     int choice = -1;
     Scanner sc = new Scanner(System.in);
 
