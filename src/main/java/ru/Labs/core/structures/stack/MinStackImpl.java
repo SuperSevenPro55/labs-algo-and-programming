@@ -13,10 +13,9 @@ public class MinStackImpl implements MinStack<Integer> {
     }
 
     @Override
-    public Integer pop() {          // Убрать последний элемент в стеке
-        Integer buffer = head.data;
+    public void pop() {          // Убрать последний элемент в стеке
+        //Integer buffer = head.data;
         head = head.next;
-        return buffer;
     }
 
     @Override
@@ -27,6 +26,11 @@ public class MinStackImpl implements MinStack<Integer> {
     @Override
     public Integer min() {          // Выдать текущий минимум в стеке
         return head.min;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return head == null;
     }
 
     private Node head;              // Голова списка (для выполнения за O(1))

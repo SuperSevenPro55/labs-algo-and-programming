@@ -13,6 +13,11 @@ public class Lab_2_3 {
     public static void start(Scanner scanner) {
         List<Student> students = readInputStudents(scanner);
 
+        if (students.isEmpty()) {
+            System.out.println(MessageManager.get("error.empty_array"));
+            return;
+        }
+
         Sorter<Student> sorting = new StudentSort();
         sorting.sort(students);
 
@@ -20,7 +25,7 @@ public class Lab_2_3 {
     }
 
     private static List<Student> readInputStudents(Scanner scanner) {
-        System.out.print("Введите количество студентов: ");
+        System.out.print(MessageManager.get("menu.lab2.item.3.enter_quantity"));
         if (!scanner.hasNextInt()) {
             System.out.println(MessageManager.get("error.invalid_input.required.int"));
             scanner.next();
@@ -30,7 +35,7 @@ public class Lab_2_3 {
         int quantity = scanner.nextInt();
         List<Student> students = new ArrayList<>();
 
-        System.out.println("Введите данные студентов (Имя Возраст) : ");
+        System.out.println(MessageManager.get("menu.lab2.item.3.enter_data"));
 
         for (int i = 0; i < quantity; i++) {
             try {

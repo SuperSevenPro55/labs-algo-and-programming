@@ -66,17 +66,17 @@ private static void executeLab(Labs lab, int choice, Scanner scanner) {
         }
         case SORTINGS_2 -> {
             if (choice == 1) Lab_3_1.start(scanner);
-            if (choice == 2) Lab_3_2.start();
+            if (choice == 2) Lab_3_2.start(scanner);
             if (choice == 3) Lab_3_3.start();
         }
         case MINS -> {
-            if (choice == 1) Lab_4_1.start();
+            if (choice == 1) Lab_4_1.start(scanner);
             if (choice == 2) Lab_4_2.start();
         }
         case HASH_MAP -> Lab_5.start();
 
         case BINARY_SEARCH -> {
-            if (choice == 1) Lab_6_1.start();
+            if (choice == 1) Lab_6_1.start(scanner);
             if (choice == 2) Lab_6_2.start();
             if (choice == 3) Lab_6_3.start();
         }
