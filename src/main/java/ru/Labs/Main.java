@@ -50,22 +50,22 @@ private static void handleSubMenu(Labs lab, Scanner scanner) {
     int choice = readInt(scanner);
     if (choice == 0) return;
 
-    executeLab(lab, choice);
+    executeLab(lab, choice, scanner);
 }
 
-private static void executeLab(Labs lab, int choice) {
+private static void executeLab(Labs lab, int choice, Scanner scanner) {
     switch (lab) {
         case BASE -> {
             if (choice == 1) Lab_1_1.start();
             if (choice == 2) Lab_1_2.start();
         }
         case SORTINGS_1 -> {
-            if (choice == 1) Lab_2_1.start();
-            if (choice == 2) Lab_2_2.start();
-            if (choice == 3) Lab_2_3.start();
+            if (choice == 1) Lab_2_1.start(scanner);
+            if (choice == 2) Lab_2_2.start(scanner);
+            if (choice == 3) Lab_2_3.start(scanner);
         }
         case SORTINGS_2 -> {
-            if (choice == 1) Lab_3_1.start();
+            if (choice == 1) Lab_3_1.start(scanner);
             if (choice == 2) Lab_3_2.start();
             if (choice == 3) Lab_3_3.start();
         }

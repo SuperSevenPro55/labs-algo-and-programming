@@ -1,34 +1,18 @@
 package ru.Labs.ui.labs;
 
-import ru.Labs.core.algorithms.sorting.CountingSort;
-import ru.Labs.core.algorithms.sorting.Sorter;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import ru.Labs.core.algorithms.sorting.Sorter;
+import ru.Labs.core.algorithms.sorting.CountingSort;
+import ru.Labs.util.InputOutputUtils;
 
 public class Lab_3_1 {
-    public static void start() {
-        Scanner scanner = new Scanner(System.in);
+    public static void start(Scanner scanner) {
+        List<Integer> numbers = InputOutputUtils.readInput(scanner);
 
-        // Считываем N (хотя для List оно нам не особо нужно, но считать надо)
-        if (scanner.hasNextInt()) {
-            int n = scanner.nextInt();
-            List<Integer> numbers = new ArrayList<>(n);
+        Sorter<Integer> sorter = new CountingSort();
+        sorter.sort(numbers);
 
-            for (int i = 0; i < n; i++) {
-                numbers.add(scanner.nextInt());
-            }
-
-            // Запускаем сортировку
-            Sorter<Integer> sorter = new CountingSort();
-            sorter.sort(numbers);
-
-            // Выводим результат
-            for (int i = 0; i < numbers.size(); i++) {
-                System.out.print(numbers.get(i) + (i == numbers.size() - 1 ? "" : " "));
-            }
-            System.out.println();
-        }
+        InputOutputUtils.printOutput(numbers);
     }
 }
