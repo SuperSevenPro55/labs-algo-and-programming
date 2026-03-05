@@ -45,4 +45,15 @@ public class InputOutputUtils {
             }
         }
     }
+    public static long readInputLong(Scanner scanner) {
+        while (true) {
+            try {
+                return scanner.nextLong();
+            } catch (InputMismatchException e) {
+                System.out.println(MessageManager.get("error.invalid_input.required.long"));
+                System.out.println(MessageManager.get("error.try_again"));
+                scanner.nextLine();
+            }
+        }
+    }
 }

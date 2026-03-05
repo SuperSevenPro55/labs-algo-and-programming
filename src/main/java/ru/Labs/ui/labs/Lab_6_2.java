@@ -1,40 +1,42 @@
 package ru.Labs.ui.labs;
 
 import java.util.Scanner;
+import ru.Labs.util.InputOutputUtils;
 
 public class Lab_6_2 {
-    public static void start() {
-        Scanner sc = new Scanner(System.in);
-        long n = sc.nextLong();
-        long w = sc.nextLong();  // Ввод данных
-        long h = sc.nextLong();
+    public static void start(Scanner scanner) {
+        long n = InputOutputUtils.readInputLong(scanner);
+        long w = InputOutputUtils.readInputLong(scanner);
+        long h = InputOutputUtils.readInputLong(scanner);
 
+        long result = findMinSquare(n, w, h);
+        System.out.println(result);
+    }
+
+    private static long findMinSquare(long n, long w, long h) {
         long left = 0;
-        long right = Math.max(w, h) * n; // В худшем случае (все в ряд)
+        long right = Math.max(w, h) * n;
 
         while (left < right) {
             long mid = left + (right - left) / 2;
 
-            long squareLength = mid / w; // Сколько дипломов влезет в "Строку" квадрата размера mid
-            long squareHeight = mid / h; // Сколько влезет "Строк" дипломов в квадрат размера mid
-
-            boolean possibleSquare = false;
-
-            if (squareHeight > 0) { // Если влезает хотя бы одна строка
-                long requiredLength = (n + squareHeight - 1) / squareHeight; // Сколько дипломов ДОЛЖНО влезть в "строку"
-                if (squareLength >= requiredLength) {
-                    possibleSquare = true;
-                }
-            }
-
-            if (possibleSquare) {
-                right = mid; // Хватает, но может можно взять квадрат меньше?
-            }
-            else {
-                left = mid + 1; // Не хватает, нужен квадрат больше
+            if (canFit(n, w, h, mid)) {
+                right = mid;
+            } else {
+                left = mid + 1;
             }
         }
+        return left;
+    }
 
-        System.out.println(left);
+    private static boolean canFit(long n, long w, long h, long squareSide) {
+        long squareLength = squareSide / w;
+        long squareHeight = squareSide / h;
+
+        if (squareHeight == 0) {
+            return false;
+        }
+
+        return squareLength >= (n + squareHeight - 1) / squareHeight;
     }
 }

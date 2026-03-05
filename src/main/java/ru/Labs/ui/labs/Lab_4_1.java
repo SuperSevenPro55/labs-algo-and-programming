@@ -10,7 +10,7 @@ public class Lab_4_1 {
         StringBuilder sb = new StringBuilder(); // Для конечного ответа
         MinStack<Integer> stack = new MinStackImpl();
 
-        System.out.println(MessageManager.get("menu.lab4.commands"));
+        System.out.println(MessageManager.get("menu.lab4.item.1.commands"));
 
         runCommandLoop(scanner, stack, sb);
 
