@@ -2,21 +2,19 @@ package ru.Labs.ui.labs;
 
 import java.io.*;
 import java.nio.file.*;
-import java.util.InputMismatchException;
 import java.util.List;
 import ru.Labs.util.FileUtils;
 import ru.Labs.util.MessageManager;
 import ru.Labs.core.algorithms.search.RogueLikeSearch;
 
 public class Lab_7_1 {
+    private static final String inputFile = "roguelike-input.csv";
+    private static final String outputFile = "roguelike-output.txt";
+
     public static void start() {
-        String inputFile = "roguelike-input.csv";
-        String outputFile = "roguelike-output.txt";
-
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
-
         if (lines.isEmpty()) {
-            System.out.println(MessageManager.get("error.empty_array"));
+            System.out.println(MessageManager.get("error.empty.array"));
             return;
         }
 
@@ -32,7 +30,11 @@ public class Lab_7_1 {
 
         RogueLikeSearch.SearchResults results = RogueLikeSearch.solve(h, w, grid);
 
-        FileUtils.writeOrCreateFile(outputFile, results.maxMoney(), results.path());
+        String outputMessage =
+                MessageManager.get("menu.lab7.item.1.output_money") + results.maxMoney() + "\n" +
+                MessageManager.get("menu.lab7.item.1.output_path") + results.path();
+
+        FileUtils.writeOrCreateFile(outputFile, outputMessage);
     }
 
     private static int getH(List<String> lines) {
@@ -54,9 +56,9 @@ public class Lab_7_1 {
                     grid[i][j] = Integer.parseInt(elements[j].trim());
                 }
             }
-        } catch (InputMismatchException | NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println(MessageManager.get("error.invalid_input.required.int"));
-            System.out.println(MessageManager.get("error.file.check_again"));
+            System.out.println(MessageManager.get("error.file.check_input"));
             return new int[0][0];
         }
 

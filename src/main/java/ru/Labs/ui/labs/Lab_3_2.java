@@ -13,7 +13,7 @@ public class Lab_3_2 {
         List<BigInteger> nums = InputOutputUtils.readInputBigInteger(scanner);
 
         if (nums.isEmpty()) {
-            System.out.println(MessageManager.get("error.empty_array"));
+            System.out.println(MessageManager.get("error.empty.array"));
             return;
         }
 

@@ -13,7 +13,7 @@ public class Lab_2_3 {
         List<Student> students = InputOutputUtils.readInputStudents(scanner);
 
         if (students.isEmpty()) {
-            System.out.println(MessageManager.get("error.empty_array"));
+            System.out.println(MessageManager.get("error.empty.array"));
             return;
         }
 

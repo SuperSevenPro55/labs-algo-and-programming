@@ -1,52 +1,43 @@
 package ru.Labs.core.algorithms.search;
 
-import ru.Labs.util.MessageManager;
-
-import java.util.InputMismatchException;
 
 public class RogueLikeSearch {
     public record SearchResults(long maxMoney, String path) {}
 
     public static SearchResults solve(int h, int w, int[][] grid) {
-        int[][] moneyTable = getMoneyTable(h, w, grid);
+        long[][] moneyTable = getMoneyTable(h, w, grid);
 
         long maxMoney = moneyTable[h - 1][w - 1];
 
-        String path = getPathReversed(h, w, moneyTable);
+        String path = getPath(h, w, moneyTable);
 
         return new SearchResults(maxMoney, path);
     }
 
-    private static int[][] getMoneyTable(int h, int w, int[][] grid) {
-        int[][] moneyTable = new int[h][w];
+    private static long[][] getMoneyTable(int h, int w, int[][] grid) {
+        long[][] moneyTable = new long[h][w];
         moneyTable[0][0] = grid[0][0];
 
-        try {
-            // Базовые случаи
-            for (int i = 1; i < w; i++) {
-                moneyTable[0][i] = moneyTable[0][i - 1] + grid[0][i];
-            }
 
-            for (int i = 1; i < h; i++) {
+        // Базовые случаи
+        for (int i = 1; i < w; i++) {
+            moneyTable[0][i] = moneyTable[0][i - 1] + grid[0][i];
+        }
+        for (int i = 1; i < h; i++) {
                 moneyTable[i][0] = moneyTable[i - 1][0] + grid[i][0];
-            }
-
-            // Не базовые случаи
-            for (int i = 1; i < h; i++) {
-                for (int j = 1; j < w; j++) { //               Ячейка сверху           Ячейка слева
-                    moneyTable[i][j] = grid[i][j] + Math.max(moneyTable[i - 1][j], moneyTable[i][j - 1]);
-                }
-            }
-        } catch (InputMismatchException e) {
-            System.out.println(MessageManager.get("error.invalid_input.required.int"));
-            return new int[0][0];
         }
 
+        // Не базовые случаи
+        for (int i = 1; i < h; i++) {
+            for (int j = 1; j < w; j++) { //               Ячейка сверху           Ячейка слева
+                moneyTable[i][j] = grid[i][j] + Math.max(moneyTable[i - 1][j], moneyTable[i][j - 1]);
+            }
+        }
 
         return moneyTable;
     }
 
-    private static String getPathReversed(int h, int w, int[][] moneyTable) {
+    private static String getPath(int h, int w, long[][] moneyTable) {
         StringBuilder path = new StringBuilder();
 
         int i = h - 1;

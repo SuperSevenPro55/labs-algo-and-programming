@@ -12,7 +12,7 @@ public class Lab_2_2 {
         List<Integer> numbers = InputOutputUtils.readInput(scanner);
 
         if (numbers.isEmpty()) {
-            System.out.println(MessageManager.get("error.empty_array"));
+            System.out.println(MessageManager.get("error.empty.array"));
             return;
         }
 

@@ -42,21 +42,21 @@ public class Lab_4_1 {
             }
             case "pop" -> {
                 if (stack.isEmpty()) {
-                    System.out.println(MessageManager.get("error.empty_stack"));
+                    System.out.println(MessageManager.get("error.empty.stack"));
                 } else {
                     stack.pop();
                 }
             }
             case "top" -> {
                 if (stack.isEmpty()) {
-                    System.out.println(MessageManager.get("error.empty_stack"));
+                    System.out.println(MessageManager.get("error.empty.stack"));
                 } else {
                     sb.append(stack.top()).append('\n');
                 }
             }
             case "min" -> {
                 if (stack.isEmpty()) {
-                    System.out.println(MessageManager.get("error.empty_stack"));
+                    System.out.println(MessageManager.get("error.empty.stack"));
                 } else {
                     sb.append(stack.min()).append('\n');
                 }
