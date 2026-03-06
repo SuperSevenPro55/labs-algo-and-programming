@@ -2,87 +2,64 @@ package ru.Labs.ui.labs;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.InputMismatchException;
 import java.util.List;
+import ru.Labs.util.FileUtils;
+import ru.Labs.util.MessageManager;
+import ru.Labs.core.algorithms.search.RogueLikeSearch;
 
 public class Lab_7_1 {
     public static void start() {
-        String inputFile = "src/main/resources/roguelike-input.csv";
-        String outputFile = "src/main/resources/roguelike-output.txt";
+        String inputFile = "roguelike-input.csv";
+        String outputFile = "roguelike-output.txt";
+
+        List<String> lines = FileUtils.readOrCreateFile(inputFile);
+
+        if (lines.isEmpty()) {
+            System.out.println(MessageManager.get("error.empty_array"));
+            return;
+        }
+
+        int h = getH(lines);
+        int w = getW(lines);
+
+        int[][] grid = parseGrid(h, w, lines);
+
+        if (grid.length == 0) {
+            System.out.println(MessageManager.get("error.empty_array"));
+            return;
+        }
+
+        RogueLikeSearch.SearchResults results = RogueLikeSearch.solve(h, w, grid);
+
+        FileUtils.writeOrCreateFile(outputFile, results.maxMoney(), results.path());
+    }
+
+    private static int getH(List<String> lines) {
+        return lines.size();
+    }
+
+    private static int getW(List<String> lines) {
+        String[] firstRow = lines.getFirst().split(";");
+        return firstRow.length;
+    }
+
+    private static int[][] parseGrid(int h, int w, List<String> lines) {
+        int[][] grid = new int[h][w];
 
         try {
-            List<String> lines = Files.readAllLines(Paths.get(inputFile)); // Считываем строки
-            if (lines.isEmpty()) {
-                return;
-            }
-
-            int h = lines.size();                                   //
-            String[] firstRow = lines.getFirst().split(";"); //Считываем размеры сетки
-            int w = firstRow.length;                                //
-
-            int[][] grid = new int[h][w];                           // И воссоздаем ее
-
             for (int i = 0; i < h; i ++) {
-                String[] elements = lines.get(i).split(";"); // Сначала берем строку
+                String[] elements = lines.get(i).split(";");
                 for (int j = 0; j < w; j++) {
-                    grid[i][j] = Integer.parseInt(elements[j].trim()); // Потом парсим ее в сетку
+                    grid[i][j] = Integer.parseInt(elements[j].trim());
                 }
             }
-
-            // Таблица, хранящая в ячейках максимальное количество монет,
-            // которое можно получить, придя в определенную ячейку
-            int[][] moneyTable = new int[h][w];
-
-            // Базовые случаи
-            moneyTable[0][0] = grid[0][0]; // В начальной ячейке всегда изначальное количество монет
-            for (int i = 1; i < w; i++) { // В первую строчку можно прийти только слева
-                moneyTable[0][i] = moneyTable[0][i - 1] + grid[0][i];
-            }
-            for (int i = 1; i < h; i++) { // В первый столбец можно прийти только сверху
-                moneyTable[i][0] = moneyTable[i - 1][0] + grid[i][0];
-            }
-
-            // Не базовые случаи
-            for (int i = 1; i < h; i++) {
-                for (int j = 1; j < w; j++) { //               Ячейка сверху           Ячейка слева
-                    moneyTable[i][j] = grid[i][j] + Math.max(moneyTable[i - 1][j], moneyTable[i][j - 1]);
-                }
-            }
-
-            long maxCoins = moneyTable[h - 1][w - 1]; // Максимальное значение монет
-
-            StringBuilder path = new StringBuilder();
-
-            int i = h - 1;
-            int j = w - 1;
-            while (i > 0 || j > 0) { // Восстанавливаем путь с конца
-                if (i == 0) { // Первая строчка - можно было прийти только слева
-                    path.append("R");
-                    j--;
-                }
-                else if (j == 0) { // Первый столбец - можно было прийти только сверху
-                    path.append("D");
-                    i--;
-                }
-                else {
-                    if (moneyTable[i - 1][j] >= moneyTable[i][j - 1]) {
-                        path.append("D");
-                        i--;
-                    }
-                    else {
-                        path.append("R");
-                        j--;
-                    }
-                }
-            }
-
-            String pathFinal = path.reverse().toString(); // Разворачиваем путь
-            String output = "Монеты: " + maxCoins + "\nПуть: " + pathFinal;
-            Files.write(Paths.get(outputFile), output.getBytes()); // Записываем в файл
-
-            System.out.println("Результат записан в файл");
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (InputMismatchException | NumberFormatException e) {
+            System.out.println(MessageManager.get("error.invalid_input.required.int"));
+            System.out.println(MessageManager.get("error.file.check_again"));
+            return new int[0][0];
         }
+
+        return grid;
     }
 }

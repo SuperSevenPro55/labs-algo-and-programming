@@ -78,7 +78,7 @@ private static void executeLab(Labs lab, int choice, Scanner scanner) {
         case BINARY_SEARCH -> {
             if (choice == 1) Lab_6_1.start(scanner);
             if (choice == 2) Lab_6_2.start(scanner);
-            if (choice == 3) Lab_6_3.start();
+            if (choice == 3) Lab_6_3.start(scanner);
         }
         case DYNAMIC_PROGRAMMING -> {
             if (choice == 1) Lab_7_1.start();
@@ -105,6 +105,7 @@ private static void executeLab(Labs lab, int choice, Scanner scanner) {
 private static int readInt(Scanner scanner) {
     while (!scanner.hasNextInt()) {
         System.out.println(MessageManager.get("error.invalid_input"));
+        System.out.println(MessageManager.get("error.try_again"));
         scanner.next();
     }
     return scanner.nextInt();
