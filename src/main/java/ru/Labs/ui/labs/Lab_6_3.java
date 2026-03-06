@@ -2,13 +2,14 @@ package ru.Labs.ui.labs;
 
 import java.util.Scanner;
 import java.util.Locale;
+import ru.Labs.util.InputOutputUtils;
 
 public class Lab_6_3 {
-    public static void start() {
-        Scanner sc = new Scanner(System.in).useLocale(Locale.US); // Для ввода с разделителем точкой
+    public static void start(Scanner scanner) {
+        double a = InputOutputUtils.readInputDouble(scanner);
 
-        double a = sc.nextDouble();
         double x = solve(a);
+
         System.out.printf(Locale.US, "%.6f\n", x);
     }
 

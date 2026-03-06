@@ -11,6 +11,7 @@ public class Lab_6_1 {
         int[] array = readAndSortArray(scanner);
 
         if (array.length == 0) {
+            System.out.println(MessageManager.get("error.empty_array"));
             return;
         }
 
