@@ -1,11 +1,9 @@
 package ru.Labs.ui.labs;
 
-import java.io.*;
-import java.nio.file.*;
-import java.util.*;
+import java.util.List;
 import ru.Labs.util.FileUtils;
-import ru.Labs.util.MessageManager;
 import ru.Labs.core.algorithms.search.LisSearch;
+import ru.Labs.util.MessageManager;
 
 public class Lab_7_2 {
     public static final String inputFile = "lis-input.txt";
