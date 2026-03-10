@@ -6,7 +6,7 @@ public enum Labs {
     SORTINGS_1(2, 3),
     SORTINGS_2(3, 3),
     MINS(4, 2),
-    HASH_MAP(5, 0),
+    HASH_MAP(5, 1),
     BINARY_SEARCH(6, 3),
     DYNAMIC_PROGRAMMING(7, 3),
     REQUESTS(8, 2),

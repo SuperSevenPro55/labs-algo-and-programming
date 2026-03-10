@@ -73,7 +73,9 @@ private static void executeLab(Labs lab, int choice, Scanner scanner) {
             if (choice == 1) Lab_4_1.start(scanner);
             if (choice == 2) Lab_4_2.start();
         }
-        case HASH_MAP -> Lab_5.start();
+        case HASH_MAP -> {
+            if (choice == 1) Lab_5.start(scanner);
+        }
 
         case BINARY_SEARCH -> {
             if (choice == 1) Lab_6_1.start(scanner);
@@ -86,13 +88,7 @@ private static void executeLab(Labs lab, int choice, Scanner scanner) {
             if (choice == 3) Lab_7_3.start();
         }
         case REQUESTS -> {
-            if (choice == 1) {
-                try {
-                    Lab_8_1.start();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            if (choice == 1) Lab_8_1.start();
             if (choice == 2) Lab_8_2.start();
         }
         case TREES -> {
@@ -110,14 +106,3 @@ private static int readInt(Scanner scanner) {
     }
     return scanner.nextInt();
 }
-/*
-public static Labs InputRequestNew(Scanner sc) {
-    IO.print("Выберите пункт: ");
-    return Labs.getById(sc.nextInt());
-}
-
-private static void printPrettyException(Labs lab, int subLab, Exception e) {
-    System.err.println("\nException in lab's " + lab.getId() + " subLab #" + subLab);
-    System.err.println(e.getMessage());
-}
-*/
