@@ -20,7 +20,6 @@ public class Lab_7_1 {
         int w = getW(lines);
 
         int[][] grid = parseGrid(h, w, lines);
-
         if (grid.length == 0) {
             System.out.println(MessageManager.get("error.empty_array"));
             return;
