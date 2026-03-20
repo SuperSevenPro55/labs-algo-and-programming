@@ -3,8 +3,15 @@ package ru.Labs.ui.labs;
 import java.util.Scanner;
 import ru.Labs.util.InputOutputUtils;
 
-public class Lab_6_2 {
-    public static void start(Scanner scanner) {
+public class Lab_6_2 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_6_2(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         long n = InputOutputUtils.readInputLong(scanner);
         long w = InputOutputUtils.readInputLong(scanner);
         long h = InputOutputUtils.readInputLong(scanner);

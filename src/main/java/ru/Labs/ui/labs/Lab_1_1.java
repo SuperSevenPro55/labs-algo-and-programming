@@ -3,8 +3,11 @@ package ru.Labs.ui.labs;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Lab_1_1 {
-    public static void start() {
+public class Lab_1_1 implements LabRunner {
+    public Lab_1_1() {}
+
+    @Override
+    public void start() {
         Task1_1 solver = new Task1_1();
 
         System.out.println("Test 1 ([]): " + solver.isValid("[]"));         // true

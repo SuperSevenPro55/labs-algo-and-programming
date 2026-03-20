@@ -4,8 +4,15 @@ import java.util.Scanner;
 import ru.Labs.core.structures.hashmap.HashMapImpl;
 import ru.Labs.util.MessageManager;
 
-public class Lab_5 {
-    public static void start(Scanner scanner) {
+public class Lab_5 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_5(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         HashMapImpl<String> hashMap = new HashMapImpl<>();
         StringBuilder sb = new StringBuilder();
 

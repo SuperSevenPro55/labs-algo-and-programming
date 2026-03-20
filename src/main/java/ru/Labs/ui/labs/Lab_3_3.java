@@ -9,8 +9,11 @@ import ru.Labs.core.algorithms.sorting.Sorter;
 import ru.Labs.core.algorithms.sorting.SpecialSort;
 import ru.Labs.core.models.Student;
 
-public class Lab_3_3 {
-    public static void start() {
+public class Lab_3_3 implements LabRunner {
+    public Lab_3_3() {}
+
+    @Override
+    public void start() {
         List<Integer> integers = new ArrayList<>(Arrays.asList(5, 2, 9, 1, 5, 6));
         Sorter<Integer> intSort = new SpecialSort<>();
         intSort.sort(integers);

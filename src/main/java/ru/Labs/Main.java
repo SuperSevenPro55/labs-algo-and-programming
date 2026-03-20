@@ -10,15 +10,65 @@ import java.util.Scanner;
 import java.util.Locale;
 
 public class Main {
-    private static Map<Labs, Map<Integer, Lab>> labs = new HashMap<>();
+    private final Map<Labs, Map<Integer, LabRunner>> labs;
+    private final Scanner scanner;
 
-    private static void init() {
-        labs.put(Labs.TREES, Map.of(1, new Lab_9_1()));
+    public Main() {
+        this.scanner = new Scanner(System.in).useLocale(Locale.US);
+        this.labs = new HashMap<>();
+
+        labs.put(Labs.BASE, Map.of(
+                1, new Lab_1_1(),
+                2, new Lab_1_2()
+        ));
+
+        labs.put(Labs.SORTINGS_1, Map.of(
+                1, new Lab_2_1(scanner),
+                2, new Lab_2_2(scanner),
+                3, new Lab_2_3(scanner)
+        ));
+
+        labs.put(Labs.SORTINGS_2, Map.of(
+                1, new Lab_3_1(scanner),
+                2, new Lab_3_2(scanner),
+                3, new Lab_3_3()
+        ));
+
+        labs.put(Labs.MINS, Map.of(
+                1, new Lab_4_1(scanner),
+                2, new Lab_4_2(scanner)
+        ));
+
+        labs.put(Labs.HASH_MAP, Map.of(
+                1, new Lab_5(scanner)
+        ));
+
+        labs.put(Labs.BINARY_SEARCH, Map.of(
+                1, new Lab_6_1(scanner),
+                2, new Lab_6_2(scanner),
+                3, new Lab_6_3(scanner)
+        ));
+
+        labs.put(Labs.DYNAMIC_PROGRAMMING, Map.of(
+                1, new Lab_7_1("roguelike-input.csv", "roguelike-output.txt"),
+                2, new Lab_7_2("lis-input.txt", "lis-output.txt"),
+                3, new Lab_7_3("lcs-input.txt")
+        ));
+
+        labs.put(Labs.REQUESTS, Map.of(
+                1, new Lab_8_1("8.1_input.txt", "8.1_output.txt"),
+                2, new Lab_8_2()
+        ));
+
+        labs.put(Labs.TREES, Map.of(
+                1, new Lab_9_1(),
+                2, new Lab_9_2()
+        ));
+
+        startApp();
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
-
+    public void startApp() {
         System.out.print(MessageManager.get("app.title"));
 
         runMainMenu(scanner);
@@ -27,7 +77,11 @@ public class Main {
         scanner.close();
     }
 
-    public static void runMainMenu(Scanner scanner) {
+    public static void main(String[] args) {
+        new Main();
+    }
+
+    public void runMainMenu(Scanner scanner) {
         Labs selected;
 
         do {
@@ -56,7 +110,7 @@ public class Main {
         System.out.println(MessageManager.get("menu.main.prompt"));
     }
 
-    private static void handleSubMenu(Labs lab, Scanner scanner) {
+    private void handleSubMenu(Labs lab, Scanner scanner) {
         MessageManager.printSubMenu("menu.lab" + lab.getId(), lab.getSubItemsCount());
 
         int choice = readInt(scanner);
@@ -64,55 +118,11 @@ public class Main {
         if (choice > lab.getSubItemsCount()) {
             System.out.println(MessageManager.get("error.invalid_input"));
         }
-        executeLab(lab, choice, scanner);
+        executeLab(lab, choice);
     }
 
-    private static void executeLab(Labs lab, int choice, Scanner scanner) {
-        switch (lab) {
-            case BASE -> {
-                if (choice == 1) Lab_1_1.start();
-                if (choice == 2) Lab_1_2.start();
-            }
-            case SORTINGS_1 -> {
-                if (choice == 1) Lab_2_1.start(scanner);
-                if (choice == 2) Lab_2_2.start(scanner);
-                if (choice == 3) Lab_2_3.start(scanner);
-            }
-            case SORTINGS_2 -> {
-                if (choice == 1) Lab_3_1.start(scanner);
-                if (choice == 2) Lab_3_2.start(scanner);
-                if (choice == 3) Lab_3_3.start();
-            }
-            case MINS -> {
-                if (choice == 1) Lab_4_1.start(scanner);
-                if (choice == 2) Lab_4_2.start(scanner);
-            }
-            case HASH_MAP -> {
-                if (choice == 1) Lab_5.start(scanner);
-            }
-
-            case BINARY_SEARCH -> {
-                if (choice == 1) Lab_6_1.start(scanner);
-                if (choice == 2) Lab_6_2.start(scanner);
-                if (choice == 3) Lab_6_3.start(scanner);
-            }
-            case DYNAMIC_PROGRAMMING -> {
-                if (choice == 1) Lab_7_1.start();
-                if (choice == 2) Lab_7_2.start();
-                if (choice == 3) Lab_7_3.start();
-            }
-            case REQUESTS -> {
-                if (choice == 1) Lab_8_1.start();
-                if (choice == 2) Lab_8_2.start();
-            }
-            case TREES -> {
-//                if (choice == 1) new Lab_9_1().start();
-                if (choice == 2) Lab_9_2.start();
-            }
-            case UNKNOWN -> {
-                System.out.println(MessageManager.get("error.invalid_input"));
-            }
-        }
+    private void executeLab(Labs lab, int choice) {
+        labs.get(lab).get(choice).start();
     }
 
     private static int readInt(Scanner scanner) {

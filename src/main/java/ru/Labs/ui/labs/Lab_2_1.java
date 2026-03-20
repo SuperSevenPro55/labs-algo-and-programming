@@ -7,8 +7,15 @@ import ru.Labs.core.algorithms.sorting.InsertionSort;
 import ru.Labs.util.InputOutputUtils;
 import ru.Labs.util.MessageManager;
 
-public class Lab_2_1 {
-    public static void start(Scanner scanner) {
+public class Lab_2_1 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_2_1(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         List<Integer> numbers = InputOutputUtils.readInput(scanner);
 
         if (numbers.isEmpty()) {

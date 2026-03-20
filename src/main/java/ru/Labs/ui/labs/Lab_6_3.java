@@ -4,8 +4,15 @@ import java.util.Scanner;
 import java.util.Locale;
 import ru.Labs.util.InputOutputUtils;
 
-public class Lab_6_3 {
-    public static void start(Scanner scanner) {
+public class Lab_6_3 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_6_3(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         double a = InputOutputUtils.readInputDouble(scanner);
 
         double x = solve(a);

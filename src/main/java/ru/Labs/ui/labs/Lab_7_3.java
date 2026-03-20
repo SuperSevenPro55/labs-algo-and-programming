@@ -5,10 +5,15 @@ import ru.Labs.util.FileUtils;
 import ru.Labs.core.algorithms.search.LcsSearch;
 import ru.Labs.util.MessageManager;
 
-public class Lab_7_3 {
-    public static final String inputFile = "lcs-input.txt";
+public class Lab_7_3 implements LabRunner {
+    private final String inputFile;
 
-    public static void start() {
+    public Lab_7_3(String inputFile) {
+        this.inputFile = inputFile;
+    }
+
+    @Override
+    public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
 
         if (lines.size() < 2) {

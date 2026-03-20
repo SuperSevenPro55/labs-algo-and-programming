@@ -1,8 +1,12 @@
 package ru.Labs.ui.labs;
 
-public class Lab_8_2 {
-    public static void start() {
+public class Lab_8_2 implements LabRunner {
+    public Lab_8_2() {
+        //TODO
+    }
 
-        return;
+    @Override
+    public void start() {
+        //TODO
     }
 }

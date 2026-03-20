@@ -8,8 +8,15 @@ import ru.Labs.core.algorithms.sorting.StudentSort;
 import ru.Labs.util.MessageManager;
 import ru.Labs.util.InputOutputUtils;
 
-public class Lab_2_3 {
-    public static void start(Scanner scanner) {
+public class Lab_2_3 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_2_3(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         List<Student> students = InputOutputUtils.readInputStudents(scanner);
 
         if (students.isEmpty()) {

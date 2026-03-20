@@ -5,11 +5,17 @@ import ru.Labs.util.FileUtils;
 import ru.Labs.core.algorithms.search.LisSearch;
 import ru.Labs.util.MessageManager;
 
-public class Lab_7_2 {
-    public static final String inputFile = "lis-input.txt";
-    public static final String outputFile = "lis-output.txt";
+public class Lab_7_2 implements LabRunner {
+    private final String inputFile;
+    private final String outputFile;
 
-    public static void start() {
+    public Lab_7_2(String inputFile, String outputFile) {
+        this.inputFile = inputFile;
+        this.outputFile = outputFile;
+    }
+
+    @Override
+    public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
         if (lines.isEmpty()) {
             System.out.println(MessageManager.get("error.empty.array"));

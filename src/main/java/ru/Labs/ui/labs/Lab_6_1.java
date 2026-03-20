@@ -6,8 +6,15 @@ import ru.Labs.util.MessageManager;
 import static ru.Labs.core.algorithms.search.BinarySearch.binarySearch;
 import ru.Labs.util.InputOutputUtils;
 
-public class Lab_6_1 {
-    public static void start(Scanner scanner) {
+public class Lab_6_1 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_6_1(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         int[] array = readAndSortArray(scanner);
 
         if (array.length == 0) {

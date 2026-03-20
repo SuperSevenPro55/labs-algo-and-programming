@@ -1,7 +1,10 @@
 package ru.Labs.ui.labs;
 
-public class Lab_1_2 {
-    public static void start() {
+public class Lab_1_2 implements LabRunner {
+    public Lab_1_2() {}
+
+    @Override
+    public void start() {
         Task1_2 cleaner = new Task1_2();
 
         // Тест 1

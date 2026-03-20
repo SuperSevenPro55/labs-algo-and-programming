@@ -5,11 +5,17 @@ import ru.Labs.util.FileUtils;
 import ru.Labs.util.MessageManager;
 import ru.Labs.core.algorithms.search.PrefixSumSearch;
 
-public class Lab_8_1 {
-    public static final String inputFile = "8.1_input.txt";
-    public static final String outputFile = "8.1_output.txt";
+public class Lab_8_1 implements LabRunner {
+    private final String inputFile;
+    private final String outputFile;
 
-    public static void start() {
+    public Lab_8_1(String inputFile, String outputFile) {
+        this.inputFile = inputFile;
+        this.outputFile = outputFile;
+    }
+
+    @Override
+    public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
         if (lines.size() < 2) {
             System.out.println(MessageManager.get("error.invalid_input.required.more"));

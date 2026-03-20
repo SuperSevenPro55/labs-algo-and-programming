@@ -5,8 +5,15 @@ import ru.Labs.core.structures.queue.PriorityQueue;
 import ru.Labs.core.structures.queue.PriorityQueueImpl;
 import ru.Labs.util.MessageManager;
 
-public class Lab_4_2 {
-    public static void start(Scanner scanner) {
+public class Lab_4_2 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_4_2(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         StringBuilder sb = new StringBuilder();
         PriorityQueue<Integer> queue = new PriorityQueueImpl();
 

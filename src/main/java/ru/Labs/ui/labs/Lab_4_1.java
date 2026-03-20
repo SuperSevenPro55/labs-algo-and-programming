@@ -5,8 +5,15 @@ import ru.Labs.core.structures.stack.MinStack;
 import ru.Labs.core.structures.stack.MinStackImpl;
 import ru.Labs.util.MessageManager;
 
-public class Lab_4_1 {
-    public static void start(Scanner scanner) {
+public class Lab_4_1 implements LabRunner {
+    private final Scanner scanner;
+
+    public Lab_4_1(Scanner scanner) {
+        this.scanner = scanner;
+    }
+
+    @Override
+    public void start() {
         StringBuilder sb = new StringBuilder(); // Для конечного ответа
         MinStack<Integer> stack = new MinStackImpl();
 

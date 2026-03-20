@@ -5,11 +5,17 @@ import ru.Labs.util.FileUtils;
 import ru.Labs.util.MessageManager;
 import ru.Labs.core.algorithms.search.RogueLikeSearch;
 
-public class Lab_7_1 {
-    private static final String inputFile = "roguelike-input2.csv";
-    private static final String outputFile = "roguelike-output.txt";
+public class Lab_7_1 implements LabRunner {
+    private final String inputFile;
+    private final String outputFile;
 
-    public static void start() {
+    public Lab_7_1(String inputFile, String outputFile) {
+        this.inputFile = inputFile;
+        this.outputFile = outputFile;
+    }
+
+    @Override
+    public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
         if (lines.isEmpty()) {
             System.out.println(MessageManager.get("error.empty.array"));
