@@ -3,10 +3,19 @@ package ru.Labs;
 import ru.Labs.ui.labs.*;
 import ru.Labs.ui.menu.Labs;
 import ru.Labs.util.MessageManager;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Locale;
 
 public class Main {
+    private static Map<Labs, Map<Integer, Lab>> labs = new HashMap<>();
+
+    private static void init() {
+        labs.put(Labs.TREES, Map.of(1, new Lab_9_1()));
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
 
@@ -52,7 +61,9 @@ public class Main {
 
         int choice = readInt(scanner);
         if (choice == 0) return;
-
+        if (choice > lab.getSubItemsCount()) {
+            System.out.println(MessageManager.get("error.invalid_input"));
+        }
         executeLab(lab, choice, scanner);
     }
 
@@ -74,7 +85,7 @@ public class Main {
             }
             case MINS -> {
                 if (choice == 1) Lab_4_1.start(scanner);
-                if (choice == 2) Lab_4_2.start();
+                if (choice == 2) Lab_4_2.start(scanner);
             }
             case HASH_MAP -> {
                 if (choice == 1) Lab_5.start(scanner);
@@ -95,8 +106,11 @@ public class Main {
                 if (choice == 2) Lab_8_2.start();
             }
             case TREES -> {
-                if (choice == 1) Lab_9_1.start();
+//                if (choice == 1) new Lab_9_1().start();
                 if (choice == 2) Lab_9_2.start();
+            }
+            case UNKNOWN -> {
+                System.out.println(MessageManager.get("error.invalid_input"));
             }
         }
     }

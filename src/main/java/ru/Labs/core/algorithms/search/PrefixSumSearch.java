@@ -1,15 +1,11 @@
 package ru.Labs.core.algorithms.search;
 
-import ru.Labs.util.MessageManager;
-
 public class PrefixSumSearch {
     private final int[] prefixSums;
 
     public PrefixSumSearch(int[] array) {
         if (array == null || array.length == 0) {
-            System.out.println(MessageManager.get("error.invalid_input.required.more"));
-            this.prefixSums = new int[0];
-            return;
+            throw new IllegalArgumentException();
         }
 
         this.prefixSums = new int[array.length];

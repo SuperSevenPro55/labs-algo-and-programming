@@ -2,11 +2,12 @@ package ru.Labs.core.structures.hashmap;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class HashMapImpl<V> implements HashMap<String, V> {
     private static final int TABLE_SIZE = 300007;
     private static final int A = 31;
-    private final ArrayList<LinkedList<Node<String, V>>> table;
+    private final List<List<Node<String, V>>> table;
 
     public HashMapImpl() {
         table = new ArrayList<>(TABLE_SIZE);
@@ -36,7 +37,7 @@ public class HashMapImpl<V> implements HashMap<String, V> {
     @Override
     public void put(String key, V value) {
         int index = hashByString(key);
-        LinkedList<Node<String, V>> chamber = table.get(index);
+        List<Node<String, V>> chamber = table.get(index);
 
         if (chamber == null) {
             chamber = new LinkedList<>();
@@ -56,7 +57,7 @@ public class HashMapImpl<V> implements HashMap<String, V> {
     @Override
     public V getValue(String key) {
         int index = hashByString(key);
-        LinkedList<Node<String, V>> chamber = table.get(index);
+        List<Node<String, V>> chamber = table.get(index);
 
         if (chamber == null) {
             return null;
@@ -74,7 +75,7 @@ public class HashMapImpl<V> implements HashMap<String, V> {
     @Override
     public V delete(String key) {
         int index = hashByString(key);
-        LinkedList<Node<String, V>> chamber = table.get(index);
+        List<Node<String, V>> chamber = table.get(index);
 
         if (chamber == null) {
             return null;

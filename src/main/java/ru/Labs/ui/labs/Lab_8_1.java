@@ -21,11 +21,10 @@ public class Lab_8_1 {
             return;
         }
 
-        PrefixSumSearch search = new PrefixSumSearch(array);
-
         StringBuilder sb = new StringBuilder();
-
         try {
+            PrefixSumSearch search = new PrefixSumSearch(array);
+
             for (int i = 2; i < lines.size(); i++) {
                 String[] command = lines.get(i).trim().split("\\s+");
                 if (command.length >= 2) {
@@ -39,6 +38,9 @@ public class Lab_8_1 {
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println(MessageManager.get("error.file.check_input"));
+            return;
+        } catch (IllegalArgumentException e) {
+            System.out.println(MessageManager.get("error.invalid_input.required.more"));
             return;
         }
 
