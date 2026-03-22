@@ -15,6 +15,9 @@ public class Lab_7_3 implements LabRunner {
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
+        if (lines == null) {
+            return;
+        }
 
         if (lines.size() < 2) {
             System.out.println(MessageManager.get("error.invalid_input.required.more"));

@@ -17,8 +17,10 @@ public class Lab_7_1 implements LabRunner {
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
-        if (lines.isEmpty()) {
-            System.out.println(MessageManager.get("error.empty.array"));
+        if (lines == null || lines.isEmpty()) {
+            if (lines != null) {
+                System.out.println(MessageManager.get("error.empty.array"));
+            }
             return;
         }
 

@@ -17,12 +17,14 @@ public class Lab_7_2 implements LabRunner {
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
-        if (lines.isEmpty()) {
-            System.out.println(MessageManager.get("error.empty.array"));
+        if (lines == null || lines.isEmpty()) {
+            if (lines != null) {
+                System.out.println(MessageManager.get("error.empty.array"));
+            }
             return;
         }
 
-        int[] nums = FileUtils.parseData(lines);
+        int[] nums = parseData(lines);
         if (nums == null || nums.length == 0) {
             return;
         }
@@ -32,6 +34,34 @@ public class Lab_7_2 implements LabRunner {
         String outputMessage = buildAnswer(results.length(), results.sequence());
 
         FileUtils.writeOrCreateFile(outputFile, outputMessage);
+    }
+
+    private static int[] parseData(List<String> lines) {
+        try {
+            int n = Integer.parseInt(lines.getFirst().trim());
+            if (n <= 0) {
+                System.out.println(MessageManager.get("error.empty.array"));
+                return null;
+            }
+
+            String[] elements = lines.get(1).split("\\s+");
+
+            int[] nums = new int[n];
+            for (int i = 0; i < n; i++) {
+                nums[i] = Integer.parseInt(elements[i]);
+            }
+
+            return nums;
+
+        } catch (NumberFormatException e) {
+            System.out.println(MessageManager.get("error.invalid_input.required.int"));
+            System.out.println(MessageManager.get("error.file.check_input"));
+            return null;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(MessageManager.get("error.invalid_input.required.more"));
+            System.out.println(MessageManager.get("error.file.check_input"));
+            return null;
+        }
     }
 
     private static String buildAnswer(int maxLisLength, int[] result) {

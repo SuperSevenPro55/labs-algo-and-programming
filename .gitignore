@@ -1,5 +1,9 @@
 target/
 .m2/
+data/
+*.txt
+*.csv
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
