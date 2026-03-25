@@ -3,12 +3,13 @@ package ru.Labs.ui.menu;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Locale;
+import java.util.function.Supplier;
 
 import ru.Labs.ui.labs.LabRunner;
 import ru.Labs.util.MessageManager;
 
 public class Application {
-    private final Map<Labs, Map<Integer, LabRunner>> labs;
+    private final Map<Labs, Map<Integer, Supplier<LabRunner>>> labs;
     private final Scanner scanner;
 
     public Application() {
@@ -66,7 +67,7 @@ public class Application {
     }
 
     private void executeLab(Labs lab, int choice) {
-        labs.get(lab).get(choice).start();
+        labs.get(lab).get(choice).get().start();
     }
 
     private int readInt() {

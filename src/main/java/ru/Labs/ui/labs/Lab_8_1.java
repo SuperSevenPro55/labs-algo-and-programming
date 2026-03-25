@@ -14,6 +14,10 @@ public class Lab_8_1 implements LabRunner {
         this.outputFile = outputFile;
     }
 
+    public Lab_8_1() {
+        this("8.1_input.txt", "8.1_output.txt");
+    }
+
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);

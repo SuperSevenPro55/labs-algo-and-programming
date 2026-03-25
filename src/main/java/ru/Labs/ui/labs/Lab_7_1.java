@@ -14,6 +14,10 @@ public class Lab_7_1 implements LabRunner {
         this.outputFile = outputFile;
     }
 
+    public Lab_7_1() {
+        this("roguelike-input.csv", "roguelike-output.txt");
+    }
+
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);

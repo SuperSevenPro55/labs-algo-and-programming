@@ -14,6 +14,10 @@ public class Lab_7_2 implements LabRunner {
         this.outputFile = outputFile;
     }
 
+    public Lab_7_2() {
+        this("lis-input.txt", "lis-output.txt");
+    }
+
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);

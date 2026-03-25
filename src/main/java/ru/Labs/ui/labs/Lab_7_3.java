@@ -12,6 +12,10 @@ public class Lab_7_3 implements LabRunner {
         this.inputFile = inputFile;
     }
 
+    public Lab_7_3() {
+        this("lcs-input.txt");
+    }
+
     @Override
     public void start() {
         List<String> lines = FileUtils.readOrCreateFile(inputFile);
