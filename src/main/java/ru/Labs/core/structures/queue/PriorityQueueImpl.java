@@ -37,6 +37,7 @@ public class PriorityQueueImpl implements PriorityQueue<Integer>{
     public Integer dequeueMax() { // Извлечение
         if (heap.isEmpty()) {
             System.out.println("*");
+            return null;
         }
 
         Node maxNode = heap.getFirst();
@@ -46,7 +47,7 @@ public class PriorityQueueImpl implements PriorityQueue<Integer>{
         idToIndex.remove(maxNode.operationId);
 
         Node lastNode = heap.getLast();
-        heap.remove(lastNode);
+        heap.removeLast();
 
         if (!heap.isEmpty()) {
             heap.set(0, lastNode);
@@ -94,7 +95,7 @@ public class PriorityQueueImpl implements PriorityQueue<Integer>{
             if (leftChild < size && heap.get(leftChild).value > heap.get(largest).value) {
                 largest = leftChild;
             }
-            if (rightChild < size && heap.get(rightChild).value < heap.get(largest).value) {
+            if (rightChild < size && heap.get(rightChild).value > heap.get(largest).value) {
                 largest = rightChild;
             }
             if (largest == index) {
