@@ -1,7 +1,7 @@
 package ru.Labs.core.structures.tree;
 
 public class BinarySearchTree {
-    Node root;
+    protected Node root;
 
     public BinarySearchTree() {
         root = null;
@@ -53,7 +53,7 @@ public class BinarySearchTree {
         return node;
     }
 
-    private int minValue(Node node) {
+    protected int minValue(Node node) {
         int minValue = node.value;
 
         while (node.left != null) {
@@ -114,8 +114,9 @@ public class BinarySearchTree {
         return possAnswer;
     }
 
-    private static class Node {
+    protected static class Node {
         int value;
+        int height = 1;
         Node left, right;
 
         public Node(int value) {
