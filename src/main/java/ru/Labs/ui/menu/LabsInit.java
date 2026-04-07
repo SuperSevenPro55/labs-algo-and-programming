@@ -54,7 +54,7 @@ public class LabsInit {
         ));
 
         labs.put(Labs.TREES, Map.of(
-                1, Lab_9_1::new,
+                1, () -> new Lab_9_1(scanner),
                 2, Lab_9_2::new
         ));
 

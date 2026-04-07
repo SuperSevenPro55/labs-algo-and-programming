@@ -83,15 +83,35 @@ public class BinarySearchTree {
     }
 
     public Integer next(int value) { // minTreeElement > value
-        //TODO
+        Integer possAnswer = null;
+        Node currentNode = root;
 
-        return value;
+        while (currentNode != null) {
+            if (value < currentNode.value) {
+                possAnswer = currentNode.value;
+                currentNode = currentNode.left;
+            } else {
+                currentNode = currentNode.right;
+            }
+        }
+
+        return possAnswer;
     }
 
     public Integer prev(int value) { // maxTreeElement < value
-        //TODO
+        Integer possAnswer = null;
+        Node currentNode = root;
 
-        return value;
+        while (currentNode != null) {
+            if (value > currentNode.value) {
+                possAnswer = currentNode.value;
+                currentNode = currentNode.right;
+            } else {
+                currentNode = currentNode.left;
+            }
+        }
+
+        return possAnswer;
     }
 
     private static class Node {
