@@ -36,13 +36,13 @@ public class PriorityQueueImpl implements PriorityQueue<Integer>{
     @Override
     public Integer dequeueMax() { // Извлечение
         if (heap.isEmpty()) {
-            System.out.println("*");
+            System.out.println("*"); // Перенести в Lab_4_2
             return null;
         }
 
         Node maxNode = heap.getFirst();
 
-        System.out.println(maxNode.operationId + " " + maxNode.value);
+        System.out.println(maxNode.operationId + " " + maxNode.value); // Перенести в Lab_4_2
 
         idToIndex.remove(maxNode.operationId);
 
