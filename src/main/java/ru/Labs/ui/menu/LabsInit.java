@@ -50,7 +50,7 @@ public class LabsInit {
 
         labs.put(Labs.REQUESTS, Map.of(
                 1, Lab_8_1::new,
-                2, Lab_8_2::new
+                2, () -> new Lab_8_2(scanner)
         ));
 
         labs.put(Labs.TREES, Map.of(
