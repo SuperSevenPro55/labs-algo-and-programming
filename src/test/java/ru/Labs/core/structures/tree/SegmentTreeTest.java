@@ -20,6 +20,7 @@ public class SegmentTreeTest {
                 4 5
                 0 3
                 7 10
+                exit
                 """;
 
         ByteArrayInputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
