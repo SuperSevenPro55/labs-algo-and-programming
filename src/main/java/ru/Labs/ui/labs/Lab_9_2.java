@@ -16,12 +16,12 @@ public class Lab_9_2 implements LabRunner {
     @Override
     public void start() {
         System.out.println(MessageManager.get("menu.lab9.item.1.commands"));
-        BinarySearchTree tree = new AVLTree();
+        AVLTree tree = new AVLTree();
 
         runCommandLoop(tree);
     }
 
-    private void runCommandLoop(BinarySearchTree tree) {
+    private void runCommandLoop(AVLTree tree) {
         while (scanner.hasNextLine()) {
             String commandLine = scanner.nextLine();
 
@@ -37,7 +37,7 @@ public class Lab_9_2 implements LabRunner {
         }
     }
 
-    private void processCommand(String commandLine, BinarySearchTree tree) {
+    private void processCommand(String commandLine, AVLTree tree) {
         String[] parts = commandLine.split("\\s+");
         String command = parts[0].toLowerCase();
 

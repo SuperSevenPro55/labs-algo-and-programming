@@ -1,20 +1,32 @@
 package ru.Labs.core.structures.tree;
 
-public class AVLTree extends BinarySearchTree {
-    @Override
-    public void insert(int value) {
-        root = insertRecAVL(root, value);
+public class AVLTree extends CommonTree implements ITree {
+    private static class AvlNode extends Node {
+        int height = 1;
+        AvlNode left;
+        AvlNode right;
+
+        public AvlNode(int value) {
+            super(value);
+        }
     }
 
-    private Node insertRecAVL(Node node, int value) {
+    private AvlNode root;
+
+    @Override
+    public void insert(int value) {
+        root = insertRec(root, value);
+    }
+
+    private AvlNode insertRec(AvlNode node, int value) {
         if (node == null) {
-            return new Node(value);
+            return new AvlNode(value);
         }
 
         if (value < node.value) {
-            node.left = insertRecAVL(node.left, value);
+            node.left = insertRec(node.left, value);
         } else if (value > node.value) {
-            node.right = insertRecAVL(node.right, value);
+            node.right = insertRec(node.right, value);
         } else {
             return node;
         }
@@ -54,7 +66,22 @@ public class AVLTree extends BinarySearchTree {
         root = deleteRecAVL(root, value);
     }
 
-    private Node deleteRecAVL(Node node, int value) {
+    @Override
+    public boolean hasValue(int value) {
+        return false;
+    }
+
+    @Override
+    public Integer next(int value) {
+        return 0;
+    }
+
+    @Override
+    public Integer prev(int value) {
+        return 0;
+    }
+
+    private AvlNode deleteRecAVL(AvlNode node, int value) {
         if (node == null) {
             return null;
         }
@@ -103,7 +130,7 @@ public class AVLTree extends BinarySearchTree {
     }
 
     // Получить высоту
-    private int getHeight(Node node) {
+    private int getHeight(AvlNode node) {
         if (node == null) {
             return 0;
         }
@@ -112,7 +139,7 @@ public class AVLTree extends BinarySearchTree {
     }
 
     // Получить баланс
-    private int getBalance(Node node) {
+    private int getBalance(AvlNode node) {
         if (node == null) {
             return 0;
         }
@@ -121,9 +148,9 @@ public class AVLTree extends BinarySearchTree {
     }
 
     @SuppressWarnings("SuspiciousNameCombination")
-    private Node rightRotate(Node yNode) {
-        Node xNode = yNode.left;
-        Node tail = xNode.right;
+    private AvlNode rightRotate(AvlNode yNode) {
+        AvlNode xNode = yNode.left;
+        AvlNode tail = xNode.right;
 
         xNode.right = yNode;
         yNode.left = tail;
@@ -135,9 +162,9 @@ public class AVLTree extends BinarySearchTree {
     }
 
     @SuppressWarnings("SuspiciousNameCombination")
-    private Node leftRotate(Node xNode) {
-        Node yNode = xNode.right;
-        Node tail = yNode.left;
+    private AvlNode leftRotate(AvlNode xNode) {
+        AvlNode yNode = xNode.right;
+        AvlNode tail = yNode.left;
 
         yNode.left = xNode;
         xNode.right = tail;
