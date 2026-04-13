@@ -1,9 +1,7 @@
 package ru.Labs.ui.labs;
 
 import java.util.Scanner;
-
 import ru.Labs.core.structures.tree.AVLTree;
-import ru.Labs.core.structures.tree.BinarySearchTree;
 import ru.Labs.util.MessageManager;
 
 public class Lab_9_2 implements LabRunner {

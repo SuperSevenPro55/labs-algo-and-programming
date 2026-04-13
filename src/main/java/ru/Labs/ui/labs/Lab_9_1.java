@@ -2,7 +2,6 @@ package ru.Labs.ui.labs;
 
 import java.util.Scanner;
 import ru.Labs.core.structures.tree.BinarySearchTree;
-import ru.Labs.core.structures.tree.CommonTree;
 import ru.Labs.util.MessageManager;
 
 public class Lab_9_1 implements LabRunner {

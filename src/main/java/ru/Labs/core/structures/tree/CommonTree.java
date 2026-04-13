@@ -1,9 +1,12 @@
 package ru.Labs.core.structures.tree;
 
-public abstract class CommonTree {
-    protected static class Node {
+public abstract class CommonTree<N extends CommonTree.Node<N>> implements ITree {
+    protected N root;
+
+    protected static abstract class Node<T extends Node<T>> {
         int value;
-        Node left, right;
+        T left;
+        T right;
 
         public Node(int value) {
             this.value = value;
@@ -11,7 +14,13 @@ public abstract class CommonTree {
         }
     }
 
-    protected int minValue(Node node) {
+    @Override
+    public abstract void insert(int value);
+
+    @Override
+    public abstract void delete(int value);
+
+    protected int minValue(N node) {
         int minValue = node.value;
 
         while (node.left != null) {
@@ -22,45 +31,13 @@ public abstract class CommonTree {
         return minValue;
     }
 
-    protected Node insertRec(Node node, int value) {
-        if (node == null) {
-            return new Node(value);
-        }
-
-        if (value < node.value) {
-            node.left = insertRec(node.left, value);
-        } else if (value > node.value) {
-            node.right = insertRec(node.right, value);
-        }
-        return node;
+    @Override
+    public boolean hasValue(int value) {
+        return hasValueCheck(value, root);
     }
 
-    protected Node deleteRec(Node node, int value) {
-        if (node == null) {
-            return null;
-        }
-
-        if (value < node.value) {
-            node.left = deleteRec(node.left, value);
-        } else if (value > node.value) {
-            node.right = deleteRec(node.right, value);
-        } else {
-            if (node.left == null) { // Нет детей или один ребенок
-                return node.right;
-            }
-            if (node.right == null) {
-                return node.left;
-            }
-
-            node.value = minValue(node.right); // Два ребенка
-            node.right = deleteRec(node.right, node.value);
-        }
-
-        return node;
-    }
-
-    protected boolean hasValueCheck(int value, Node root) {
-        Node currentNode = root;
+    private boolean hasValueCheck(int value, N root) {
+        N currentNode = root;
 
         while (currentNode != null) {
             if (value == currentNode.value) {
@@ -77,5 +54,37 @@ public abstract class CommonTree {
         return false;
     }
 
+    @Override
+    public Integer next(int value) { // minTreeElement > value
+        Integer possAnswer = null;
+        N currentNode = root;
 
+        while (currentNode != null) {
+            if (value < currentNode.value) {
+                possAnswer = currentNode.value;
+                currentNode = currentNode.left;
+            } else {
+                currentNode = currentNode.right;
+            }
+        }
+
+        return possAnswer;
+    }
+
+    @Override
+    public Integer prev(int value) { // maxTreeElement < value
+        Integer possAnswer = null;
+        N currentNode = root;
+
+        while (currentNode != null) {
+            if (value > currentNode.value) {
+                possAnswer = currentNode.value;
+                currentNode = currentNode.right;
+            } else {
+                currentNode = currentNode.left;
+            }
+        }
+
+        return possAnswer;
+    }
 }

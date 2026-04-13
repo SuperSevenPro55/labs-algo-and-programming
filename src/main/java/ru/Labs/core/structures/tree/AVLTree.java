@@ -1,21 +1,23 @@
 package ru.Labs.core.structures.tree;
 
-public class AVLTree extends CommonTree implements ITree {
-    private static class AvlNode extends Node {
+public class AVLTree extends CommonTree<AVLTree.AvlNode> implements ITree {
+
+    static class AvlNode extends Node<AvlNode> {
         int height = 1;
-        AvlNode left;
-        AvlNode right;
 
         public AvlNode(int value) {
             super(value);
         }
     }
 
-    private AvlNode root;
-
     @Override
     public void insert(int value) {
         root = insertRec(root, value);
+    }
+
+    @Override
+    public void delete(int value) {
+        root = deleteRecAVL(root, value);
     }
 
     private AvlNode insertRec(AvlNode node, int value) {
@@ -59,26 +61,6 @@ public class AVLTree extends CommonTree implements ITree {
         }
 
         return node;
-    }
-
-    @Override
-    public void delete(int value) {
-        root = deleteRecAVL(root, value);
-    }
-
-    @Override
-    public boolean hasValue(int value) {
-        return false;
-    }
-
-    @Override
-    public Integer next(int value) {
-        return 0;
-    }
-
-    @Override
-    public Integer prev(int value) {
-        return 0;
     }
 
     private AvlNode deleteRecAVL(AvlNode node, int value) {
