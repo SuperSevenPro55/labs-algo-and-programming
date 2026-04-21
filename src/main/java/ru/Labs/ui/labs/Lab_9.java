@@ -1,25 +1,26 @@
 package ru.Labs.ui.labs;
 
 import java.util.Scanner;
-import ru.Labs.core.structures.tree.AVLTree;
+import ru.Labs.core.structures.tree.ITree;
 import ru.Labs.util.MessageManager;
 
-public class Lab_9_2 implements LabRunner {
+public class Lab_9 implements LabRunner {
     private final Scanner scanner;
+    private final ITree tree;
 
-    public Lab_9_2(Scanner scanner) {
+    public Lab_9(Scanner scanner, ITree tree) {
         this.scanner = scanner;
+        this.tree = tree;
     }
 
     @Override
     public void start() {
         System.out.println(MessageManager.get("menu.lab9.item.1.commands"));
-        AVLTree tree = new AVLTree();
 
         runCommandLoop(tree);
     }
 
-    private void runCommandLoop(AVLTree tree) {
+    private void runCommandLoop(ITree tree) {
         while (scanner.hasNextLine()) {
             String commandLine = scanner.nextLine();
 
@@ -35,7 +36,7 @@ public class Lab_9_2 implements LabRunner {
         }
     }
 
-    private void processCommand(String commandLine, AVLTree tree) {
+    private void processCommand(String commandLine, ITree tree) {
         String[] parts = commandLine.split("\\s+");
         String command = parts[0].toLowerCase();
 

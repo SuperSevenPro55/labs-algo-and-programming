@@ -1,5 +1,7 @@
 package ru.Labs.ui.menu;
 
+import ru.Labs.core.structures.tree.AVLTree;
+import ru.Labs.core.structures.tree.BinarySearchTree;
 import ru.Labs.ui.labs.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,8 +56,8 @@ public class LabsInit {
         ));
 
         labs.put(Labs.TREES, Map.of(
-                1, () -> new Lab_9_1(scanner),
-                2, () -> new Lab_9_2(scanner)
+                1, () -> new Lab_9(scanner, new BinarySearchTree()),
+                2, () -> new Lab_9(scanner, new AVLTree())
         ));
 
         return labs;
