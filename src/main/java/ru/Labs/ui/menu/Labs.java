@@ -10,7 +10,8 @@ public enum Labs {
     BINARY_SEARCH(6, 3),
     DYNAMIC_PROGRAMMING(7, 3),
     REQUESTS(8, 2),
-    TREES(9, 2);
+    TREES(9, 2),
+    RUINS(10, 2);
 
     private final int id;
     private final int subItemsCount;

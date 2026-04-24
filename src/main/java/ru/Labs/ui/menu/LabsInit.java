@@ -60,6 +60,11 @@ public class LabsInit {
                 2, () -> new Lab_9(scanner, new AVLTree())
         ));
 
+        labs.put(Labs.RUINS, Map.of(
+                1, () -> new Lab_10_1(scanner),
+                2, Lab_10_2::new
+        ));
+
         return labs;
     }
 }
