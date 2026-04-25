@@ -18,7 +18,6 @@ public class Application {
     }
 
     public void start() {
-        System.out.print(MessageManager.get("app.title"));
 
         runMainMenu();
 

@@ -13,7 +13,7 @@ public class Vertex {
     }
 
     public void addNeighbor(Vertex neighbor) {
-        if (neighbors.contains(neighbor)) {
+        if (!neighbors.contains(neighbor)) {
             neighbors.add(neighbor);
         }
     }
