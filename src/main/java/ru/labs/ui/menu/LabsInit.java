@@ -13,7 +13,7 @@ public class LabsInit {
         Map<Labs, Map<Integer, Supplier<LabRunner>>> labs = new HashMap<>();
 
         labs.put(Labs.BASE, Map.of(
-                1, Lab_1_1::new,
+                1, () -> new Lab_1_1(scanner),
                 2, Lab_1_2::new
         ));
 

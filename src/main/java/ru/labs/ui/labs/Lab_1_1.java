@@ -1,57 +1,35 @@
 package ru.labs.ui.labs;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import ru.labs.core.algorithms.search.ValidBracketsSearch;
+import ru.labs.util.MessageManager;
+
+import java.util.Scanner;
 
 public class Lab_1_1 implements LabRunner {
-    public Lab_1_1() {}
+    private final Scanner scanner;
+
+    public Lab_1_1(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     @Override
     public void start() {
-        Task1_1 solver = new Task1_1();
+        System.out.println(MessageManager.get("menu.lab1.item.1.enter_brackets"));
+        String brackets = scanner.next();
 
-        System.out.println("Test 1 ([]): " + solver.isValid("[]"));         // true
-        System.out.println("Test 2 ([](){}): " + solver.isValid("[](){}")); // true
-        System.out.println("Test 3 ([({})]): " + solver.isValid("[({})]")); // true
-        System.out.println("Test 4 ({]): " + solver.isValid("{]"));         // false
-        System.out.println("Test 5 (({)}): " + solver.isValid("({)}"));     // false
-        System.out.println("Test 6 ( ): " + solver.isValid(""));            // true
-        System.out.println("Test 7 ((: " + solver.isValid("(("));           // false
-    }
+        boolean isValid;
 
-    public static class Task1_1 {
-        public boolean isValid(String s) {
-            // Если длина нечетная, баланса быть не может
-            if (s.length() % 2 != 0) {
-                return false;
-            }
+        try {
+            isValid = ValidBracketsSearch.isValid(brackets);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
 
-            // Используем ArrayDeque как стек
-            Deque<Character> stack = new ArrayDeque<>();
-
-            for (char c : s.toCharArray()) {
-                // Если скобка открывающая - кладем в стек
-                if (c == '(' || c == '{' || c == '[') {
-                    stack.push(c);
-                }
-                // Если закрывающая
-                else {
-                    // Если стек пуст, значит закрывающая пришла раньше открывающей -> false
-                    if (stack.isEmpty()) {
-                        return false;
-                    }
-
-                    char top = stack.pop(); // Достаем последнюю открытую
-
-                    // Проверяем соответствие пар
-                    if (c == ')' && top != '(') return false;
-                    if (c == '}' && top != '{') return false;
-                    if (c == ']' && top != '[') return false;
-                }
-            }
-
-            // В конце стек должен быть пуст (все открытые закрылись)
-            return stack.isEmpty();
+        if (isValid) {
+            System.out.println(MessageManager.get("menu.lab1.item.1.valid"));
+        } else {
+            System.out.println(MessageManager.get("menu.lab1.item.1.wrong"));
         }
     }
 }
