@@ -1,7 +1,6 @@
-package ru.labs.core.search;
+package ru.labs.core.algorithms.search;
 
 import org.junit.jupiter.api.Test;
-import ru.labs.core.algorithms.search.ValidBracketsSearch;
 
 import static org.junit.jupiter.api.Assertions.*;
 

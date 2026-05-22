@@ -1,6 +1,7 @@
 package ru.labs.util;
 
 import ru.labs.core.models.Student;
+import ru.labs.core.structures.graph.CommonGraph;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -139,6 +140,26 @@ public class InputOutputUtils {
     public static void printOutputBigInteger(List<BigInteger> nums) {
         for (BigInteger num : nums) {
             System.out.println(num);
+        }
+    }
+
+    public static void readInputGraphData(Scanner scanner, CommonGraph graph) {
+        System.out.println(MessageManager.get("menu.lab10.item.1.input.vertices.count"));
+        int n = scanner.nextInt();
+        System.out.println(MessageManager.get("menu.lab10.item.1.input.edges.count"));
+        int m = scanner.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            graph.addVertex(i);
+        }
+
+        System.out.println(MessageManager.get("menu.lab10.item.1.input.edges"));
+
+        for (int i = 0; i < m; i++) {
+            int u = scanner.nextInt();
+            int v = scanner.nextInt();
+
+            graph.addEdge(u, v);
         }
     }
 }

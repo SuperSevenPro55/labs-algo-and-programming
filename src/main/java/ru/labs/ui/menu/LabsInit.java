@@ -62,7 +62,7 @@ public class LabsInit {
 
         labs.put(Labs.RUINS, Map.of(
                 1, () -> new Lab_10_1(scanner),
-                2, Lab_10_2::new
+                2, () -> new Lab_10_2(scanner)
         ));
 
         return labs;

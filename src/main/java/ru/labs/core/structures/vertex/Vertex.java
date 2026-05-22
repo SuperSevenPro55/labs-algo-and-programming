@@ -1,4 +1,4 @@
-package ru.labs.core.structures.graph;
+package ru.labs.core.structures.vertex;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 public class Vertex {
     private final int id;
     private final List<Vertex> neighbors = new ArrayList<>();
-    private boolean visited = false;
+    private VertexState state = VertexState.NOT_VISITED;
 
     public Vertex(int id) {
         this.id = id;
@@ -26,12 +26,11 @@ public class Vertex {
         return neighbors;
     }
 
-    public boolean isVisited() {
-        return visited;
+    public VertexState getState() {
+        return state;
     }
 
-    public void setVisited(boolean visited) {
-        this.visited = visited;
+    public void setState(VertexState state) {
+        this.state = state;
     }
-
 }

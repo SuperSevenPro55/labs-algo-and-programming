@@ -2,45 +2,36 @@ package ru.labs.ui.labs;
 
 import java.util.List;
 import java.util.Scanner;
-import ru.labs.core.structures.graph.Graph;
+
+import ru.labs.core.algorithms.graph.FindConnectivityComponents;
+import ru.labs.core.algorithms.graph.GraphAlgorithm;
+import ru.labs.core.structures.graph.UndirectedGraph;
 import ru.labs.util.MessageManager;
 
+import static ru.labs.util.InputOutputUtils.readInputGraphData;
+
 public class Lab_10_1 implements LabRunner {
-    private final Graph graph;
+    private final UndirectedGraph graph;
     private final Scanner scanner;
+    private final GraphAlgorithm<UndirectedGraph, List<List<Integer>>> algorithm;
 
     public Lab_10_1(Scanner scanner) {
         this.scanner = scanner;
-        this.graph = new Graph();
+        this.graph = new UndirectedGraph();
+        this.algorithm = new FindConnectivityComponents();
     }
 
     @Override
     public void start() {
-        System.out.println(MessageManager.get("menu.lab10.item.1.input.vertices.count"));
-        int n = scanner.nextInt();
-        System.out.println(MessageManager.get("menu.lab10.item.1.input.edges.count"));
-        int m = scanner.nextInt();
+        readInputGraphData(scanner, graph);
 
-        for (int i = 0; i < n; i++) {
-            graph.addVertex(i);
-        }
-
-        System.out.println(MessageManager.get("menu.lab10.item.1.input.edges"));
-
-        for (int i = 0; i < m; i++) {
-            int u = scanner.nextInt();
-            int v = scanner.nextInt();
-
-            graph.addEdge(u, v);
-        }
-
-        List<List<Integer>> components = graph.findConnectivityComponents();
+        List<List<Integer>> components = algorithm.execute(graph);
 
         System.out.println(MessageManager.get("menu.lab10.item.1.output.components"));
         for (List<Integer> component : components) {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < component.size(); i++) {
-                sb.append(component.get(i));
+            for (Integer integer : component) {
+                sb.append(integer);
                 sb.append(" ");
             }
 
