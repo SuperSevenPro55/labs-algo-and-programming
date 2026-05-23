@@ -65,6 +65,10 @@ public class LabsInit {
                 2, () -> new Lab_10_2(scanner)
         ));
 
+        labs.put(Labs.DELIVERY, Map.of(
+                1, Lab_11::new
+        ));
+
         return labs;
     }
 }

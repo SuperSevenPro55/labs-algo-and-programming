@@ -2,7 +2,7 @@ package ru.labs.ui.labs;
 
 import java.util.List;
 import java.util.Scanner;
-import ru.labs.core.models.Student;
+import ru.labs.core.models.sorting.Student;
 import ru.labs.core.algorithms.sorting.Sorter;
 import ru.labs.core.algorithms.sorting.StudentSort;
 import ru.labs.util.MessageManager;

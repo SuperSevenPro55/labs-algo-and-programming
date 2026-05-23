@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 import ru.labs.core.algorithms.sorting.Sorter;
 import ru.labs.core.algorithms.sorting.SpecialSort;
-import ru.labs.core.models.Student;
+import ru.labs.core.models.sorting.Student;
 
 public class Lab_3_3 implements LabRunner {
     public Lab_3_3() {}

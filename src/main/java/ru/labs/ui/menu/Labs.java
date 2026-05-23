@@ -1,5 +1,8 @@
 package ru.labs.ui.menu;
 
+import lombok.Getter;
+
+@Getter
 public enum Labs {
     UNKNOWN(0, 0),
     BASE(1, 2),
@@ -11,7 +14,8 @@ public enum Labs {
     DYNAMIC_PROGRAMMING(7, 3),
     REQUESTS(8, 2),
     TREES(9, 2),
-    RUINS(10, 2);
+    RUINS(10, 2),
+    DELIVERY(11, 1);
 
     private final int id;
     private final int subItemsCount;
@@ -19,13 +23,6 @@ public enum Labs {
     Labs(int id, int subItemsCount) {
         this.id = id;
         this.subItemsCount = subItemsCount;
-    }
-
-    public int getId() {
-        return id;
-    }
-    public int getSubItemsCount() {
-        return subItemsCount;
     }
 
     public static Labs getById(Integer id) {

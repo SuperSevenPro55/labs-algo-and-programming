@@ -35,15 +35,5 @@ public class MinStackImpl implements MinStack<Integer> {
 
     private Node head;              // Голова списка (для выполнения за O(1))
 
-    private static class Node {     // Описание узла
-        final int data;
-        final int min;
-        final Node next;
-
-        Node(int data, int min, Node next) {
-            this.data = data;
-            this.min = min;
-            this.next = next;
-        }
-    }
+    private record Node(int data, int min, Node next) {}
 }

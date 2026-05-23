@@ -1,11 +1,16 @@
 package ru.labs.core.structures.vertex;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Vertex {
     private final int id;
     private final List<Vertex> neighbors = new ArrayList<>();
+    @Setter
     private VertexState state = VertexState.NOT_VISITED;
 
     public Vertex(int id) {
@@ -16,21 +21,5 @@ public class Vertex {
         if (!neighbors.contains(neighbor)) {
             neighbors.add(neighbor);
         }
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public List<Vertex> getNeighbors() {
-        return neighbors;
-    }
-
-    public VertexState getState() {
-        return state;
-    }
-
-    public void setState(VertexState state) {
-        this.state = state;
     }
 }

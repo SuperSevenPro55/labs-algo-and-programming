@@ -1,5 +1,8 @@
-package ru.labs.core.models;
+package ru.labs.core.models.sorting;
 
+import lombok.Getter;
+
+@Getter
 public class Student implements Comparable<Student> {
     private final String name;
     private final int age;
@@ -7,14 +10,6 @@ public class Student implements Comparable<Student> {
     public Student(String name, int age) {
         this.name = name;
         this.age = age;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public int getAge() {
-        return this.age;
     }
 
     @Override

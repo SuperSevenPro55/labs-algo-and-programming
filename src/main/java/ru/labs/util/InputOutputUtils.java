@@ -1,6 +1,6 @@
 package ru.labs.util;
 
-import ru.labs.core.models.Student;
+import ru.labs.core.models.sorting.Student;
 import ru.labs.core.structures.graph.CommonGraph;
 
 import java.math.BigInteger;
