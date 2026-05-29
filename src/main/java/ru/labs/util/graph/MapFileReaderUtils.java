@@ -21,6 +21,8 @@ public class MapFileReaderUtils {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
                 String line;
 
+                br.readLine();
+
                 while ((line = br.readLine()) != null) {
                     if (line.isEmpty()) {
                         continue;
@@ -53,6 +55,8 @@ public class MapFileReaderUtils {
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
                 String line;
+
+                br.readLine();
 
                 while ((line = br.readLine()) != null) {
                     if (line.isEmpty()) {
