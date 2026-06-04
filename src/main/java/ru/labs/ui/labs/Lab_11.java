@@ -2,7 +2,7 @@ package ru.labs.ui.labs;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import ru.labs.core.algorithms.pathfinding.DijkstraRouteBuilder;
+import ru.labs.core.algorithms.pathfinding.AStarRouteBuilder;
 import ru.labs.core.algorithms.pathfinding.RouteBuilder;
 import ru.labs.core.models.graph.Edge;
 import ru.labs.core.models.graph.Node;
@@ -35,7 +35,7 @@ public class Lab_11 implements LabRunner {
         System.out.println("Старт: " + startNode.getId());
         System.out.println("Финиш: " + finishNode.getId());
 
-        RouteBuilder algorithm = new DijkstraRouteBuilder(context.nodesById(), context.adjacencyList());
+        RouteBuilder algorithm = new AStarRouteBuilder(context.nodesById(), context.adjacencyList());
 
         RouteResult result = RouteProfiler.profile(algorithm, startNode, finishNode);
 

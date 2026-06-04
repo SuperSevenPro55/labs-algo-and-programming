@@ -50,15 +50,19 @@ public class GraphRenderer {
                 );
             }
         }
+        shapeRenderer.end();
 
         // Отрисовка исследованных алгоритмом узлов
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         if (routeResult != null && routeResult.getExploredNodes() != null) {
-            shapeRenderer.setColor(new Color(0.8f, 0.8f, 0.2f, 0.5f));
+            shapeRenderer.setColor(new Color(0.9f, 0.9f, 0.1f, 0.6f));
+            float pointRadius = camera.viewportWidth * 0.001f * camera.zoom;
+
             for (Node node : routeResult.getExploredNodes()) {
                 shapeRenderer.circle(
                         node.getX().floatValue(),
                         node.getY().floatValue(),
-                        camera.viewportWidth * 0.001f * camera.zoom
+                        pointRadius, 8
                 );
             }
         }
@@ -66,12 +70,15 @@ public class GraphRenderer {
         // Отрисовка финального пути
         if (routeResult != null && routeResult.getFinalPath() != null) {
             shapeRenderer.setColor(Color.RED);
+            float lineWidth = camera.viewportWidth * 0.0015f * camera.zoom;
+
             for (Edge edge : routeResult.getFinalPath()) {
-                shapeRenderer.line(
+                shapeRenderer.rectLine(
                         edge.getUX().floatValue(),
                         edge.getUY().floatValue(),
                         edge.getVX().floatValue(),
-                        edge.getVY().floatValue()
+                        edge.getVY().floatValue(),
+                        lineWidth
                 );
             }
 
