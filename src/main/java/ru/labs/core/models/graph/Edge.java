@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Edge {
+public class  Edge {
     private final Long u;
     private final Long v;
 
@@ -16,5 +16,5 @@ public class Edge {
     private Double vX;
     private Double vY;
 
-    private Long distance;
+    private Double distance;
 }
