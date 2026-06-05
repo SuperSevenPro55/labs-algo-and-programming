@@ -31,7 +31,7 @@ public class CameraController extends InputAdapter {
         camera.zoom += amountY * zoomSensitivity * camera.zoom;
 
         float minZoom = 0.01f;
-        float maxZoom = 1.5f;
+        float maxZoom = 2f;
         if (camera.zoom < minZoom) camera.zoom = minZoom;
         if (camera.zoom > maxZoom) camera.zoom = maxZoom;
 

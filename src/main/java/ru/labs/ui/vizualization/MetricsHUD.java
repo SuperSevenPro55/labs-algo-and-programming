@@ -10,38 +10,40 @@ import lombok.Getter;
 import ru.labs.core.models.graph.RouteResult;
 
 /**
- * Отрисовка интерфейса поверх карты
+ * Класс-отрисовки метрик алгоритмов
  */
-
 @Getter
 public class MetricsHUD {
     private final Stage stage;
     private final BitmapFont font;
+    private final Label metricsLabel;
 
-    public MetricsHUD(RouteResult routeResult) {
+    public MetricsHUD() {
         this.stage = new Stage(new ScreenViewport());
         this.font = new BitmapFont();
 
-        Label.LabelStyle style = new Label.LabelStyle(font, Color.WHITE);
-
-        String text = "Algorithm: Dijkstra\n";
-        if (routeResult != null) {
-            text += "Execution time: " + routeResult.getExecutionTimeMs() + "ms\n" +
-                    "Visited Nodes: " + routeResult.getVisitedCount() + "\n" +
-                    "Path Length: " + routeResult.getFinalPath().size() + " edges";
-        } else {
-            text += "Status: waiting for route...";
-        }
-
-        Label metricsLabel = new Label(text, style);
+        Label.LabelStyle labelStyle = new Label.LabelStyle(font, Color.WHITE);
+        metricsLabel = new Label("Status: Loading map...", labelStyle);
 
         Table table = new Table();
         table.top().left();
         table.setFillParent(true);
         table.pad(20);
-        table.add(metricsLabel).left();
 
+        table.add(metricsLabel).left();
         stage.addActor(table);
+    }
+
+    public void updateMetrics(RouteResult result, String currentAlgo, long calculationTime) {
+        if (result == null) {
+            metricsLabel.setText("Algorithm: " + currentAlgo +
+                    "\nStatus: Select Start (L-Click) and Finish (R-Click) points.");
+            return;
+        }
+        metricsLabel.setText("Algorithm: " + currentAlgo + "\n" +
+                "Calculation Time: " + calculationTime + " ms\n" +
+                "Visited Nodes: " + result.getVisitedCount() + "\n" +
+                "Path Length: " + result.getFinalPath().size() + " edges");
     }
 
     public void render(float deltaTime) {
